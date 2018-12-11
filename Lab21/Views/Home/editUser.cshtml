@@ -1,0 +1,21 @@
+﻿@model Lab21.Models.Person
+@{
+    ViewBag.Title = "editUser";
+}
+
+<h2>editUser</h2>
+
+
+
+<form action="/Home/displayUser" method="post">
+    <input type="text" name="FirstName" value="@Model.FirstName" placeholder="First Name" />
+    <input type="text" name="LastName" value="@Model.LastName" placeholder="Last Name" />
+    <input type="email" name="Email" value="@Model.Email" placeholder="Email" />
+    <input type="tel" name="Phone" value="@Model.Phone" placeholder="Phone" />
+    <input type="password" name="Password" value="@Model.Password" placeholder="Password" />
+    <input type="text" name="MothersName" value="@Model.MothersName" placeholder="MothersName" />
+    <input type="datetime" name="Birthday" value="@Model.Birthday." placeholder="bday" />
+    <input type="hidden" name="UserID" value="@Model.UserID" />
+
+    <input type="submit" class="btn-danger" />
+</form>

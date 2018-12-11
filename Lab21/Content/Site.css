@@ -1,0 +1,79 @@
+﻿body {
+    /*padding-top: 50px;*/
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.img-circle {
+    margin-right: 100px;
+    float: right;
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;
+    border: 5px solid #78c2ad;
+}
+
+.headerIndex{
+    padding-top: 5rem;
+}
+
+.jumbotron {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    border: 5px solid #78c2ad;
+}
+
+#pop1Background {
+    background-image: url("https://i.imgur.com/Bo1UlQC.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    height: 600px;
+    border-radius: 15px;
+    margin-top: 50px;
+
+}
+
+.row{
+    background-color: rgba(255, 255, 255, .8);
+    border-radius:15px;
+    border: 5px solid black;
+    margin: 290px 0px 50px 0px;
+}
+
+.popEmp1 {
+    margin-left: 23%;
+    height: 470px;
+    margin-top: 140px;
+    position: absolute;
+    border-radius: 7px;
+    box-shadow: rgba(128, 128, 128, .4) 10px 10px;
+}
+
+.DisplayClass {
+    border-top: 1px double black;
+}
+li :hover {
+    background-color: #78c2ad;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}

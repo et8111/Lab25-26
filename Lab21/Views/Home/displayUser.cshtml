@@ -1,0 +1,27 @@
+﻿@model Lab21.Models.CoffeeShopEntities
+@{
+    ViewBag.Title = "displayUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var temp = @Model.UserInfoes.ToList();
+    int n = 1;
+}
+
+<h2>Our Peoples</h2>
+
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var v in temp)
+    {
+        <tr>
+            <td>@(n++)</td>
+            <td>@v.FirstName @v.LastName</td>
+            <td><a href="/Home/EditUser?id=@v.UserID">EDIT USER</a></td>
+            <td><a href="/Home/deleteUser?id=@v.UserID">DY</a></td>
+        </tr>
+    }
+</table>

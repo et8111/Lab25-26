@@ -1,0 +1,89 @@
+﻿@model Lab21.Models.Person
+@{
+    ViewBag.Title = "Register";
+}
+<img class="popEmp1" src="https://i.imgur.com/X2gA8HI.jpg" />
+<div style="margin-top: 50px">
+    <h1>Register</h1>
+    @*<form class="form-horizontal" action="/" method="post" name="theForm" onsubmit="return(validate());">*@
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @class = "form-horizontal", onsubmit = "return(validate());" }))
+    {
+        @Html.ValidationSummary()
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="firstName">First Name:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.FirstName, new { type = "text", @class = "form-control", placeholder = "Enter First Name" })
+                <div id="firstNameValidate" class="invalid-feedback"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.LastName, new { type = "text", @class = "form-control", placeholder = "Enter Last name" })
+                <div id="lastNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.UserName, new { type = "email", @class = "form-control", placeholder = "Enter Email" })
+                <div id="emailNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="phone">Phone#:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.Phone, new { type = "tel", @class = "form-control", placeholder = "Enter Phone#" })
+                <div id="phoneNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pass">Password:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.Password, new { name = "pass", type = "password", @class = "form-control", placeholder = "Enter Password" })
+                <div id="passNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pass2">Password Confirm:</label>
+            <div class="col-sm-10">
+                @Html.TextBox("pass2", null, new { type = "password", @class = "form-control", placeholder = "Enter password again" })
+                <div id="pass2NameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="mother">Mothers Maiden Name:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.MotherName, new { type = "text", @class = "form-control", placeholder = "Enter Mothers Maiden Name" })
+                <div id="motherNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="bday">Birthday:</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(a => a.Birthday, new { name = "Birthday", type = "date", @class = "form-control", placeholder = "Enter Birthday" })
+                <div id="dateNameValidate" class="invalid-feedback"></div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="subButton" type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    }
+    @*</form>*@
+</div>
