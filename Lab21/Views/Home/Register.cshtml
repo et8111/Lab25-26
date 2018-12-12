@@ -1,6 +1,7 @@
 ﻿@model Lab21.Models.Person
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <img class="popEmp1" src="https://i.imgur.com/X2gA8HI.jpg" />
 <div style="margin-top: 50px">
@@ -73,7 +74,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="bday">Birthday:</label>
             <div class="col-sm-10">
-                @Html.TextBoxFor(a => a.Birthday, new { name = "Birthday", type = "date", @class = "form-control", placeholder = "Enter Birthday" })
+                @Html.TextBoxFor(a => a.Birthday, new { name = "Birthday", type = "datetime", @class = "form-control", placeholder = "Enter Birthday" })
                 <div id="dateNameValidate" class="invalid-feedback"></div>
 
             </div>

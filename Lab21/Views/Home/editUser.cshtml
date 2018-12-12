@@ -1,6 +1,7 @@
-﻿@model Lab21.Models.Person
+﻿@model Lab21.Models.UserInfo
 @{
     ViewBag.Title = "editUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>editUser</h2>
@@ -10,7 +11,6 @@
     <input type="text" name="LastName" value="@Model.LastName" placeholder="Last Name" />
     <input type="email" name="Email" value="@Model.Email" placeholder="Email" />
     <input type="tel" name="Phone" value="@Model.Phone" placeholder="Phone" />
-    <input type="password" name="Password" value="@Model.Password" placeholder="Password" />
     <input type="text" name="MothersName" value="@Model.Email" placeholder="MothersName" />
     <input type="datetime" name="Birthday" value="@Model.Birthday." placeholder="bday" />
     <input type="submit" class="btn-danger" />

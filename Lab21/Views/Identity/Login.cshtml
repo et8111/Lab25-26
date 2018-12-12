@@ -1,0 +1,33 @@
+﻿@model Lab21.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+
+@using (Html.BeginForm("Login", "Identity", FormMethod.Post, new { @class = "form-horizontal"}))
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="firstName">First Name:</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(a => a.UserName, new { type = "text", @class = "form-control", placeholder = "Enter First Name" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="lastName">Password:</label>
+        <div class="col-sm-10">
+            @Html.PasswordFor(a => a.Password, new {@class = "form-control"})
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="subButton" type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+}

@@ -4,13 +4,13 @@
     <Key>
       <PropertyRef Name="UserID" />
     </Key>
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
     <Property Name="MothersName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Birthday" Type="date" />
+    <Property Name="Birthday" Type="datetime" />
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityContainer Name="CoffeeShopModelStoreContainer">

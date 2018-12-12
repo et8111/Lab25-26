@@ -32,12 +32,16 @@ namespace Lab21.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(Person u)
         {
-            var identityResult = await UserManager.CreateAsync(u);
+            //var identityResult = await UserManager.CreateAsync(new Person(u.UserName),u.Password);
 
             if (ModelState.IsValid)
             {
-                if (identityResult.Succeeded)
+                LoginModel user = new LoginModel();
+                user.UserName = u.UserName;
+                var userManager = HttpContext.GetOwinContext().Get<UserManager<Person>>();
+                var identityResult = await userManager.CreateAsync(new Person(u.UserName), u.Password);
 
+                if (identityResult.Succeeded)
                 {
                     UserInfo ui = new UserInfo();
                     ui.Birthday = u.Birthday;
@@ -45,16 +49,13 @@ namespace Lab21.Controllers
                     ui.FirstName = u.FirstName;
                     ui.LastName = u.LastName;
                     ui.MothersName = u.MotherName;
-                    ui.Password = u.Password;
                     ui.Phone = u.Phone;
                     CoffeeShopEntities shop = new CoffeeShopEntities();
                     shop.UserInfoes.Add(ui);
                     shop.SaveChanges();
-
-                    ViewBag.fn = ui.FirstName;
-                    return RedirectToAction("registerComplete");
+                    return RedirectToAction("registerComplete",u);
                 }
-                ModelState.AddModelError("FAIL", identityResult.Errors.FirstOrDefault());
+                ModelState.AddModelError("", identityResult.Errors.FirstOrDefault());
 
                 return View();
             }
@@ -64,22 +65,23 @@ namespace Lab21.Controllers
 
         public ActionResult autoFill()
         {
-            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "asdfasdf", "asdfasdf", "MA", "2018-01-01" };
+            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "asdfasdf", "asdfasdf", "MA", "01/01/2018" };
             return Json(s, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         public ActionResult displayUser()
         {
             return View(new CoffeeShopEntities());
         }
-
+        [Authorize]
         public ActionResult editUser(int id)
         {
             CoffeeShopEntities shop = new CoffeeShopEntities();
             UserInfo u = shop.UserInfoes.First(a => a.UserID == id);
             return View(u);
         }
-
+        [Authorize]
         public ActionResult UserChanges(UserInfo u)
         {
             CoffeeShopEntities shop = new CoffeeShopEntities();
@@ -110,7 +112,7 @@ namespace Lab21.Controllers
 
         public ActionResult registerComplete(Person p)
         {
-            ViewBag.fn = p.FirstName;
+            ViewBag.First = p.FirstName;
             return View();
         }
 

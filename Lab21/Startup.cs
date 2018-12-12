@@ -17,7 +17,7 @@ namespace Lab21
     {
         public void Configuration(IAppBuilder app)
         {
-            const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=newMaster;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            const string ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NewNEWMaster;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             app.CreatePerOwinContext(() => new IdentityDbContext<Person>(ConnectionString));
 
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
@@ -33,7 +33,7 @@ namespace Lab21
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Home/Login"),
+                LoginPath = new PathString("/Identity/Login"),
             });
         }
     }
