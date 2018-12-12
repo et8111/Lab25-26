@@ -7,8 +7,7 @@ using Lab21.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Host.SystemWeb;
-using Microsoft.Owin;
+
 using System.Threading.Tasks;
 
 namespace Lab21.Controllers
@@ -33,7 +32,7 @@ namespace Lab21.Controllers
         [HttpPost]
         public async Task<ActionResult> Register(Person u)
         {
-            var identityResult = await UserManager.CreateAsync(new Person(u.UserName),u.Password);
+            var identityResult = await UserManager.CreateAsync(u);
 
             if (ModelState.IsValid)
             {
@@ -65,7 +64,7 @@ namespace Lab21.Controllers
 
         public ActionResult autoFill()
         {
-            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "asdf", "asdf", "MA", "2018-01-01" };
+            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "asdfasdf", "asdfasdf", "MA", "2018-01-01" };
             return Json(s, JsonRequestBehavior.AllowGet);
         }
 

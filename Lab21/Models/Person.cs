@@ -8,10 +8,14 @@ namespace Lab21.Models
 {
     public class Person: IdentityUser
     {
-        public Person(string userName)
+        public Person()
         {
-        }
 
+        }
+        public Person(string username)
+        {
+            UserName = username;
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
