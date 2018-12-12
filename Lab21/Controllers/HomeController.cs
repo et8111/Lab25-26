@@ -113,5 +113,10 @@ namespace Lab21.Controllers
             ViewBag.fn = p.FirstName;
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
