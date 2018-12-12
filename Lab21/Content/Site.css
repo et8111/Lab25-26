@@ -68,6 +68,15 @@ textarea {
     box-shadow: rgba(128, 128, 128, .4) 10px 10px;
 }
 
+#popEmp2 {
+    margin-left: 33%;
+    height: 400px;
+    margin-top: -50px;
+    position:absolute;
+    border-radius: 7px;
+    box-shadow: rgba(128, 128, 128, .4) 10px 10px;
+}
+
 .DisplayClass {
     border-top: 1px double black;
 }
