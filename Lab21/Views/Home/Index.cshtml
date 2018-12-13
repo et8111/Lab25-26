@@ -4,10 +4,18 @@
 }
 
 <div class="jumbotron" style="overflow:hidden;">
-    <img src="http://comedycentral.mtvnimages.com/images/shows/chappelle/videos/season1/101_popcopy_v6.jpg" class="img-circle" />
+    <img onclick="HG();" id="img1" src="http://comedycentral.mtvnimages.com/images/shows/chappelle/videos/season1/101_popcopy_v6.jpg" class="img-circle" />
     <h1 class="headerIndex">Welcome to PopCopy!</h1>
-    <p class="lead">Everything is gone. I hope you <span style="font-weight:bold">Registered</span> :(</p>
-    <p>Be one of our @ViewBag.Temp members!</p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p class="lead">Everything is gone. I hope you <span style="font-weight:bold">Registered</span> :(</p>
+        <p>Be one of our @ViewBag.Temp members!</p>
+    }
+    else
+    {
+        <p class="lead">The Earth is about to be <span style="font-weight:bold">RECYCLED.</span></p>
+        <p>You will be saved as one of our @ViewBag.Temp members! :)</p>
+    }
 </div>
 <div>
     <div class="jumbotron">
@@ -26,14 +34,27 @@
 </div>
 <div id="pop1Background" style="display:none;">
     &nbsp;
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Don't Worry</h2>
-            <p>
-                Your can still register to save yourself here.
-            </p>
-            <p><a class="btn btn-danger" href="/Home/Register">REGISTER</a></p>
-        </div>
+    
+        <div class="row">
+            <div class="col-md-4">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <h2>Don't Worry</h2>
+                    <p>
+                        Your can still register to save yourself here.
+                    </p>
+                    <p><a class="btn btn-danger" href="/Home/Register">REGISTER</a></p>
+                }
+                else
+                {
+                    <h2>Welcome Back!</h2>
+                    <p>
+                        Heres a bunch of stuff that only YOU can do. Now that your <strong>REGISTERED</strong>
+                    </p>
+                    <p><a class="btn btn-primary" href="/Home/displayUser">control them @(User.Identity.Name.Substring(0, User.Identity.Name.IndexOf("@")))</a></p>
+                }
+            </div>
 
+        </div>
     </div>
-</div>
+    

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 
 using System.Threading.Tasks;
+using System.Net;
+using System.Reflection;
 
 namespace Lab21.Controllers
 {
@@ -65,7 +67,7 @@ namespace Lab21.Controllers
 
         public ActionResult autoFill()
         {
-            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "asdfasdf", "asdfasdf", "MA", "01/01/2018" };
+            string[] s = { "asdf", "asdf", "asdf@asdf.com", "9999999999", "123456", "123456", "MA", "01/01/2018" };
             return Json(s, JsonRequestBehavior.AllowGet);
         }
 
@@ -78,7 +80,8 @@ namespace Lab21.Controllers
         public ActionResult editUser(int id)
         {
             CoffeeShopEntities shop = new CoffeeShopEntities();
-            UserInfo u = shop.UserInfoes.First(a => a.UserID == id);
+            UserInfo u = new UserInfo();
+            u = shop.UserInfoes.Find(id);
             return View(u);
         }
         [Authorize]
@@ -100,14 +103,34 @@ namespace Lab21.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult deleteUser(int id)
+        public async Task<ActionResult> deleteUser(int id)
         {
             CoffeeShopEntities shop = new CoffeeShopEntities();
             UserInfo dedPerson = shop.UserInfoes.Find(id);
+            var userEmail = dedPerson.Email;
+            if (userEmail == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (userEmail != User.Identity.Name)
+            {
+                TempData["msg"] = "Not Autherized";
+                return RedirectToAction("displayUser", "Home");
+            }
+            var user = await UserManager.FindByNameAsync(dedPerson.Email);
+            if (User.Identity.Name == userEmail)
+            {
+                var AM = HttpContext.GetOwinContext().Authentication;
+                AM.SignOut();
+            }
+            await UserManager.DeleteAsync(user);
+
+            //////////////////////////////////////////////////////
+            
             shop.UserInfoes.Remove(dedPerson);
 
             shop.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult registerComplete(Person p)

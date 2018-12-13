@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Lab21.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
@@ -31,17 +33,13 @@ namespace Lab21.Controllers
                 {
                     var ident = UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                     authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-                    return RedirectToAction("displayUser", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             ModelState.AddModelError("", "Idiot");
             return View(login);
         }
 
-        //public ActionResult Registration()
-        //{
-        //    return View();
-        //}
 
         [HttpPost]
         public async Task<ActionResult> Registration(LoginModel login)
@@ -58,6 +56,12 @@ namespace Lab21.Controllers
                 }
             }
             return RedirectToAction("Registration");
+        }
+        public ActionResult Logout()
+        {
+            var AM = HttpContext.GetOwinContext().Authentication;
+            AM.SignOut();            
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -93,3 +93,11 @@ function HOVERSTUFF(e) {
     if (e.id == "listitem5")
         document.getElementById("itemDesc").innerHTML = "Its a Brochure.";
 }
+
+function HG() {
+    var image = document.getElementById("img1").setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/d/df/Marshall_Applewhite.jpg")
+    setTimeout(function () {
+        document.getElementById("img1").setAttribute("src", "http://comedycentral.mtvnimages.com/images/shows/chappelle/videos/season1/101_popcopy_v6.jpg");
+    }, 50);
+    
+}

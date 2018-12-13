@@ -6,12 +6,20 @@
     int n = 1;
 }
 
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>AYE!</strong> @TempData["msg"].ToString()
+    </div>
+
+}
 <h2>Our Peoples</h2>
 
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>#</th>
         <th>Name</th>
+        <th>Email</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -20,8 +28,13 @@
         <tr>
             <td>@(n++)</td>
             <td>@v.FirstName @v.LastName</td>
-            <td><a href="/Home/EditUser?id=@v.UserID">EDIT USER</a></td>
-            <td><a href="/Home/deleteUser?id=@v.UserID">DY</a></td>
+            <td>@v.Email</td>
+            <td><a href="/Home/EditUser?id=@v.UserID" class="btn btn-primary" role="button">Edit User</a></td>
+            @if (User.Identity.Name == v.Email) { 
+            <td><a href="/Home/deleteUser?id=@v.UserID" style="font-family: cursive;" class="btn btn-secondary" role="button">do it @User.Identity.Name.Substring(0,User.Identity.Name.IndexOf("@"))</a></td>
+            }else{
+                <td></td>
+            }
         </tr>
     }
 </table>

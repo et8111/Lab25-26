@@ -16,10 +16,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Home/Register">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Home/displayUser">Users</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Identity/Login">Login</a></li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/Register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Identity/Login">Login</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Home/displayUser">Users</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Identity/Logout">Logout</a></li>
+                        <li class="nav-item nav-link">What it due @User.Identity.Name</li>
+                    }
+
                 </ul>
 
             </div>
